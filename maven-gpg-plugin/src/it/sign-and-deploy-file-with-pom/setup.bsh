@@ -1,4 +1,0 @@
-import java.io.*;
-import org.codehaus.plexus.util.*;
-
-FileUtils.deleteDirectory( new File( basedir, "target" ) );

@@ -1,3 +1,0 @@
-import java.io.*;
-
-throw new NullPointerException( "Bite me" );

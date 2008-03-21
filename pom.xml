@@ -1,4 +1,5 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <!--
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
@@ -17,87 +18,250 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
 
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <parent>
-    <groupId>org.apache.maven</groupId>
-    <artifactId>maven-parent</artifactId>
-    <version>18</version>
-    <relativePath>../pom/maven/pom.xml</relativePath>
+    <artifactId>maven-plugins</artifactId>
+    <groupId>org.apache.maven.plugins</groupId>
+    <version>8</version>
   </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>maven-ant-plugin</artifactId>
+  <packaging>maven-plugin</packaging>
+  <name>Maven Ant Plugin</name>
+  <version>2.1-SNAPSHOT</version>
+  <prerequisites>
+    <maven>2.0.4</maven>
+  </prerequisites>
+  <issueManagement>
+    <system>jira</system>
+    <url>http://jira.codehaus.org/browse/MANT</url>
+  </issueManagement>
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-project</artifactId>
+      <version>2.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-settings</artifactId>
+      <version>2.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-artifact</artifactId>
+      <version>2.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-model</artifactId>
+      <version>2.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.wagon</groupId>
+      <artifactId>wagon-provider-api</artifactId>
+      <version>1.0-alpha-6</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <version>2.0.2</version>
+    </dependency>
+    <!-- For Maven 2.0.4 -->
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-utils</artifactId>
+      <version>1.4.1</version>
+    </dependency>
+    <dependency>
+      <groupId>ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>1.6.5</version>
+    </dependency>
+    <dependency>
+      <groupId>xalan</groupId>
+      <artifactId>xalan</artifactId>
+      <version>2.7.0</version>
+    </dependency>
 
-  <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-plugins-aggregator</artifactId>
-  <version>1-SNAPSHOT</version>
-  <packaging>pom</packaging>
+    <dependency>
+      <groupId>org.apache.maven.shared</groupId>
+      <artifactId>maven-plugin-testing-harness</artifactId>
+      <version>1.0-beta-1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-embedder</artifactId>
+      <version>2.0.4</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-core</artifactId>
+      <version>2.0.4</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>ant</groupId>
+      <artifactId>ant-junit</artifactId>
+      <version>1.6.5</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>ant</groupId>
+      <artifactId>ant-nodeps</artifactId>
+      <version>1.6.5</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>xml-apis</groupId>
+      <artifactId>xml-apis</artifactId>
+      <version>1.0.b2</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-container-default</artifactId>
+      <version>1.0-alpha-9</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
 
-  <name>Maven Plugins Aggregator</name>
-  <description>Maven Plugins Aggregator</description>
-
-  <modules>
-    <module>maven-plugins</module>
-    <module>maven-ant-plugin</module>
-    <module>maven-antrun-plugin</module>
-
-    <!-- HACK: Deliberately put before other plugins that employ maven-antrun-plugin to workaround MNG-1323 -->
-    <module>maven-eclipse-plugin</module>
-
-    <!-- Excluded due to ongoing failures <module>maven-assembly-plugin</module> -->
-    <module>maven-changelog-plugin</module>
-    <module>maven-changes-plugin</module>
-    <module>maven-checkstyle-plugin</module>
-    <module>maven-clean-plugin</module>
-    <module>maven-compiler-plugin</module>
-    <module>maven-dependency-plugin</module>
-    <module>maven-deploy-plugin</module>
-    <module>maven-doap-plugin</module>
-    <module>maven-docck-plugin</module>
-    <module>maven-ear-plugin</module>
-    <module>maven-ejb-plugin</module>
-    <module>maven-gpg-plugin</module>
-    <module>maven-help-plugin</module>
-    <module>maven-idea-plugin</module>
-    <module>maven-install-plugin</module>
-    <module>maven-invoker-plugin</module>
-    <module>maven-jar-plugin</module>
-    <module>maven-jarsigner-plugin</module>
-    <module>maven-javadoc-plugin</module>
-    <module>maven-linkcheck-plugin</module>
-    <module>maven-one-plugin</module>
-    <module>maven-patch-plugin</module>
-    <module>maven-pdf-plugin</module>
-    <module>maven-pmd-plugin</module>
-    <!--Excluded as a workaround for MNG-3814
-    <module>maven-project-info-reports-plugin</module>-->
-    <module>maven-rar-plugin</module>
-    <module>maven-reactor-plugin</module>
-    <!--Excluded as a workaround for MNG-3814
-    <module>maven-remote-resources-plugin</module-->
-    <module>maven-repository-plugin</module>
-    <module>maven-resources-plugin</module>
-    <module>maven-shade-plugin</module>
-    <module>maven-site-plugin</module>
-    <module>maven-source-plugin</module>
-    <module>maven-stage-plugin</module>
-    <module>maven-toolchains-plugin</module>
-    <module>maven-verifier-plugin</module>
-    <module>maven-war-plugin</module>
-  </modules>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.3</version>
+      </plugin>
+    </plugins>
+  </build>
 
   <profiles>
     <profile>
-      <id>maven-3</id> 
+      <id>integration-tests</id>
       <activation>
-        <file>
-          <!--  This employs that the basedir expression is only recognized by Maven 3.x (see MNG-2363) --> 
-          <exists>${basedir}</exists> 
-        </file>
+        <property>
+          <name>maven.test.skip</name>
+          <value>!true</value>
+        </property>
       </activation>
-      <modules>
-        <module>maven-project-info-reports-plugin</module>
-        <module>maven-remote-resources-plugin</module>
-      </modules>
-    </profile> 
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-clean-plugin</artifactId>
+            <configuration>
+              <filesets>
+                <fileset>
+                  <directory>src/it</directory>
+                  <includes>
+                    <include>**/target</include>
+                    <include>**/build.xml</include>
+                    <include>**/maven-build.xml</include>
+                    <include>**/maven-build.properties</include>
+                  </includes>
+                </fileset>
+              </filesets>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-install-plugin</artifactId>
+            <version>2.2</version>
+            <executions>
+              <execution>
+                <id>it-test</id>
+                <phase>pre-integration-test</phase>
+                <goals>
+                  <goal>install-file</goal>
+                </goals>
+                <configuration>
+                  <file>${project.build.directory}/${project.build.finalName}.jar</file>
+                  <groupId>${project.groupId}</groupId>
+                  <artifactId>${project.artifactId}</artifactId>
+                  <version>${project.version}</version>
+                  <packaging>${project.packaging}</packaging>
+                  <pomFile>${basedir}/pom.xml</pomFile>
+                  <createChecksum>true</createChecksum>
+                  <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
+                  <localRepositoryId>it-local-repo</localRepositoryId>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-invoker-plugin</artifactId>
+            <version>1.0</version>
+            <configuration>
+              <debug>true</debug>
+              <projectsDirectory>src/it</projectsDirectory>
+              <pomIncludes>
+                <pomInclude>ear-it/pom.xml</pomInclude>
+                <pomInclude>webapp-it/pom.xml</pomInclude>
+                <pomInclude>plugin-it/pom.xml</pomInclude>
+              </pomIncludes>
+              <postBuildHookScript>verify.bsh</postBuildHookScript>
+              <goals>
+                <!-- Install to the target local-repo -->
+                <goal>install ant:ant</goal>
+              </goals>
+              <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
+            </configuration>
+            <executions>
+              <execution>
+                <id>integration-test</id>
+                <phase>integration-test</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <!--  Verify the results by calling Ant -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.1</version>
+            <executions>
+              <execution>
+                <phase>post-integration-test</phase>
+                <configuration>
+                  <tasks>
+                    <ant dir="${basedir}/src/it/ear-it" antfile="${basedir}/src/it/ear-it/build.xml" target="clean" />
+                    <ant dir="${basedir}/src/it/ear-it" antfile="${basedir}/src/it/ear-it/build.xml" target="package" />
+
+                    <ant dir="${basedir}/src/it/webapp-it" antfile="${basedir}/src/it/webapp-it/build.xml" target="clean" />
+                    <ant dir="${basedir}/src/it/webapp-it" antfile="${basedir}/src/it/webapp-it/build.xml" target="package" />
+
+                    <ant dir="${basedir}/src/it/plugin-it" antfile="${basedir}/src/it/plugin-it/build.xml" target="clean" />
+                    <ant dir="${basedir}/src/it/plugin-it" antfile="${basedir}/src/it/plugin-it/build.xml" target="package" />
+                  </tasks>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.3</version>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
   </profiles>
 </project>
