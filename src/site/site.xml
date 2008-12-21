@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!--
 Licensed to the Apache Software Foundation (ASF) under one
@@ -21,10 +21,6 @@ under the License.
 
 <project>
   <body>
-    <links>
-      <item name="Ant" href="http://ant.apache.org/"/>
-    </links>
-
     <menu name="Overview">
       <item name="Introduction" href="index.html"/>
       <item name="Goals" href="plugin-info.html"/>
@@ -32,10 +28,18 @@ under the License.
       <item name="FAQ" href="faq.html"/>
     </menu>
     <menu name="Examples">
-      <item name="Customizing Ant Build Files" href="/examples/customize.html"/>
-      <item name="Running Individual Unit Tests" href="/examples/run-single-test.html"/>
-      <item name="Failing if JUnit is Missing" href="/examples/fail-missing-junit.html"/>
-      <item name="Skipping Unit Tests" href="/examples/skip-tests.html"/>
+   	  <item name="Preparing dependencies for Maven 2.0.6 / 2.1" href="examples/preparing-dependencies.html"/>
+      <item name="Copying specific artifacts" href="examples/copying-artifacts.html" />
+      <item name="Copying project dependencies" href="examples/copying-project-dependencies.html" />
+      <item name="Unpacking specific artifacts" href="examples/unpacking-artifacts.html" />
+      <item name="Unpacking the project dependencies" href="examples/unpacking-project-dependencies.html" />
+      <item name="Using project dependencies' sources" href="examples/using-dependencies-sources.html" />
+   	  <item name="Failing the build on dependency analysis warnings" href="examples/failing-the-build-on-dependency-analysis-warnings.html"/>
+   	  <item name="Filtering the dependency tree" href="examples/filtering-the-dependency-tree.html"/>
+   	  <item name="Resolving conflicts using the dependency tree" href="examples/resolving-conflicts-using-the-dependency-tree.html"/>
+    </menu>
+    <menu name="Resources">
+      <item name="Dependency Mechanism" href="http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html" />
     </menu>
   </body>
 </project>

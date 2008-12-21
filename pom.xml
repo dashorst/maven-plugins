@@ -21,120 +21,132 @@ under the License.
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
+  
   <parent>
     <artifactId>maven-plugins</artifactId>
     <groupId>org.apache.maven.plugins</groupId>
-    <version>11</version>
+    <version>12</version>
   </parent>
-
-  <artifactId>maven-ant-plugin</artifactId>
+  
+  <artifactId>maven-dependency-plugin</artifactId>
+  <version>2.1-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
-  <name>Maven Ant Plugin</name>
-  <version>2.1</version>
+
+  <name>Maven Dependency Plugin</name>
+  <description>Provides utility goals to work with dependencies like copying, unpacking, analyzing, resolving and many more.</description>
+
+  <developers>
+    <developer>
+      <id>brianf</id>
+      <name>Brian Fox</name>
+      <email>brianf@apache.org</email>
+      <roles>
+        <role>Lead Developer</role>
+      </roles>
+      <timezone>5</timezone>
+    </developer>
+    <developer>
+      <id>dtran</id>
+      <name>Dan T. Tran</name>
+      <email>dantran@gmail.com</email>
+      <organization>
+      </organization>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>jdcasey</id>
+      <name>John Casey</name>
+      <email>casey.john.d@gmail.com</email>
+      <organization>
+      </organization>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+  </developers>
 
   <prerequisites>
-    <maven>2.0.6</maven>
+    <maven>2.0.3</maven>
   </prerequisites>
 
-  <issueManagement>
-    <system>jira</system>
-    <url>http://jira.codehaus.org/browse/MANT</url>
-  </issueManagement>
-
   <scm>
-    <connection>scm:svn:http://svn.apache.org/repos/asf/maven/plugins/tags/maven-ant-plugin-2.1</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/maven/plugins/tags/maven-ant-plugin-2.1</developerConnection>
-    <url>http://svn.apache.org/viewvc/maven/plugins/tags/maven-ant-plugin-2.1</url>
+    <connection>scm:svn:http://svn.apache.org/repos/asf/maven/plugins/trunk/maven-dependency-plugin/</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/maven/plugins/trunk/maven-dependency-plugin/</developerConnection>
+    <url>http://svn.apache.org/viewvc/maven/plugins/trunk/maven-dependency-plugin/</url>
   </scm>
-
+  <issueManagement>
+    <system>JIRA</system>
+    <url>http://jira.codehaus.org/browse/MDEP</url>
+  </issueManagement>
+  
+  <properties>
+    <maven.version>2.0.9</maven.version>
+  </properties>
+  
   <dependencies>
     <dependency>
       <groupId>org.apache.maven</groupId>
-      <artifactId>maven-project</artifactId>
-      <version>2.0.6</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-settings</artifactId>
-      <version>2.0.6</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven</groupId>
       <artifactId>maven-artifact</artifactId>
-      <version>2.0.6</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-model</artifactId>
-      <version>2.0.6</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven.wagon</groupId>
-      <artifactId>wagon-provider-api</artifactId>
-      <version>1.0-beta-2</version>
+      <version>${maven.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
-      <version>2.0.2</version>
-    </dependency>
-    <dependency>
-      <groupId>org.codehaus.plexus</groupId>
-      <artifactId>plexus-utils</artifactId>
-      <version>1.5.1</version>
-    </dependency>
-    <dependency>
-      <groupId>ant</groupId>
-      <artifactId>ant</artifactId>
-      <version>1.6.5</version>
-    </dependency>
-    <dependency>
-      <groupId>xalan</groupId>
-      <artifactId>xalan</artifactId>
-      <version>2.7.0</version>
-    </dependency>
-    <dependency>
-      <groupId>xml-apis</groupId>
-      <artifactId>xml-apis</artifactId>
-      <version>1.0.b2</version>
-    </dependency>
-    <dependency>
-      <groupId>org.codehaus.plexus</groupId>
-      <artifactId>plexus-container-default</artifactId>
-      <version>1.0-alpha-9</version>
-    </dependency>
-
-    <!-- test -->
-    <dependency>
-      <groupId>org.apache.maven.shared</groupId>
-      <artifactId>maven-plugin-testing-harness</artifactId>
-      <version>1.1</version>
-      <scope>test</scope>
+      <version>${maven.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
-      <artifactId>maven-embedder</artifactId>
-      <version>2.0.4</version>
-      <scope>test</scope>
+      <artifactId>maven-project</artifactId>
+      <version>${maven.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-model</artifactId>
+      <version>${maven.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-core</artifactId>
-      <version>2.0.6</version>
+      <version>${maven.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.shared</groupId>
+      <artifactId>maven-plugin-testing-tools</artifactId>
+      <version>1.0-alpha-3</version>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>ant</groupId>
-      <artifactId>ant-junit</artifactId>
-      <version>1.6.5</version>
+      <groupId>org.apache.maven.shared</groupId>
+      <artifactId>maven-plugin-testing-harness</artifactId>
       <scope>test</scope>
+      <version>1.1</version>
     </dependency>
     <dependency>
-      <groupId>ant</groupId>
-      <artifactId>ant-nodeps</artifactId>
-      <version>1.6.5</version>
-      <scope>test</scope>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-archiver</artifactId>
+      <version>1.0-alpha-9</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.codehaus.plexus</groupId>
+          <artifactId>plexus-container-default</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.codehaus.plexus</groupId>
+          <artifactId>plexus-component-api</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-utils</artifactId>
+      <version>1.4.6</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.shared</groupId>
+      <artifactId>file-management</artifactId>
+      <version>1.1</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -142,119 +154,112 @@ under the License.
       <version>3.8.2</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-container-default</artifactId>
+      <version>1.0-alpha-9-stable-1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.shared</groupId>
+      <artifactId>maven-dependency-analyzer</artifactId>
+      <version>1.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.shared</groupId>
+      <artifactId>maven-dependency-tree</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.shared</groupId>
+      <artifactId>maven-common-artifact-filters</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-io</artifactId>
+      <version>1.0-alpha-1</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.codehaus.plexus</groupId>
+          <artifactId>plexus-container-default</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.codehaus.plexus</groupId>
+          <artifactId>plexus-component-api</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    
+    <!-- Dependencies for Analyze-report mojo -->
+    <dependency>
+      <groupId>org.apache.maven.reporting</groupId>
+      <artifactId>maven-reporting-api</artifactId>
+      <version>2.0.6</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.reporting</groupId>
+      <artifactId>maven-reporting-impl</artifactId>
+      <version>2.0.4</version>
+    </dependency>
   </dependencies>
-
+  
   <build>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.3</version>
+        <configuration>
+          <!-- Need of more head space in order to run the unit tests !-->
+          <argLine>-Xmx256m</argLine>
+          <systemProperties>
+            <property>
+              <name>maven.home</name>
+              <value>${maven.home}</value>
+            </property>
+          </systemProperties>
+        </configuration>
       </plugin>
     </plugins>
   </build>
-
+  
   <profiles>
     <profile>
-      <id>integration-tests</id>
-      <activation>
-        <property>
-          <name>maven.test.skip</name>
-          <value>!true</value>
-        </property>
-      </activation>
+      <id>run-its</id>
+      <!--remove when SHITTY is released-->
+      <pluginRepositories>
+        <pluginRepository>
+          <id>Codehaus Snapshots</id>
+          <url>http://snapshots.repository.codehaus.org</url>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+          <releases>
+            <enabled>false</enabled>
+          </releases>
+        </pluginRepository>
+      </pluginRepositories>
       <build>
         <plugins>
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-clean-plugin</artifactId>
-            <configuration>
-              <filesets>
-                <fileset>
-                  <directory>src/it</directory>
-                  <includes>
-                    <include>**/target</include>
-                    <include>**/build.xml</include>
-                    <include>**/maven-build.xml</include>
-                    <include>**/maven-build.properties</include>
-                  </includes>
-                </fileset>
-              </filesets>
-            </configuration>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-install-plugin</artifactId>
-            <version>2.2</version>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>shitty-maven-plugin</artifactId>
+            <version>1.0-alpha-3-SNAPSHOT</version>
             <executions>
               <execution>
-                <id>it-test</id>
-                <phase>pre-integration-test</phase>
                 <goals>
-                  <goal>install-file</goal>
+                  <goal>clean</goal>
+                  <goal>install</goal>
+                  <goal>test</goal>
                 </goals>
                 <configuration>
-                  <file>${project.build.directory}/${project.build.finalName}.jar</file>
-                  <groupId>${project.groupId}</groupId>
-                  <artifactId>${project.artifactId}</artifactId>
-                  <version>${project.version}</version>
-                  <packaging>${project.packaging}</packaging>
-                  <pomFile>${basedir}/pom.xml</pomFile>
-                  <createChecksum>true</createChecksum>
-                  <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
-                  <localRepositoryId>it-local-repo</localRepositoryId>
+                  <parallel>false</parallel>
                 </configuration>
               </execution>
             </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-invoker-plugin</artifactId>
-            <version>1.1</version>
-            <configuration>
-              <debug>true</debug>
-              <projectsDirectory>src/it</projectsDirectory>
-              <pomIncludes>
-                <pomInclude>*/pom.xml</pomInclude>
-              </pomIncludes>
-              <postBuildHookScript>verify.bsh</postBuildHookScript>
-              <goals>
-                <goal>clean</goal>
-                <goal>ant:ant</goal>
-                <goal>antrun:run</goal>
-              </goals>
-              <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
-            </configuration>
-            <executions>
-              <execution>
-                <id>integration-test</id>
-                <phase>integration-test</phase>
-                <goals>
-                  <goal>run</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>integration-test-phase-2</id>
-                <phase>integration-test</phase>
-                <goals>
-                  <goal>run</goal>
-                </goals>
-                <configuration>
-                  <pomIncludes>
-                    <pomInclude>ear-it/pom.xml</pomInclude>
-                  </pomIncludes>
-                  <goalsFile>goals-2.txt</goalsFile>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>2.4.3</version>
           </plugin>
         </plugins>
       </build>
     </profile>
   </profiles>
+  
 </project>
