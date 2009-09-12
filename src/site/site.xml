@@ -20,31 +20,17 @@ under the License.
 -->
 
 <project>
+  <body>
+    <breadcrumbs>
+      <!-- TODO: This breadcrumb should be removed when it has been solved in the parent -->
+      <item name="Maven" href="http://maven.apache.org/index.html" />
+      <item name="Plugins" href="http://maven.apache.org/plugins/index.html" />
+    </breadcrumbs>
+  </body>
+  <!-- TODO remove when using Maven Parent 11+ -->
   <skin>
     <groupId>org.apache.maven.skins</groupId>
     <artifactId>maven-stylus-skin</artifactId>
     <version>1.1</version>
   </skin>
-  <body>
-    <menu name="Overview">
-      <item name="Introduction" href="index.html"/>
-      <item name="Goals" href="plugin-info.html"/>
-      <item name="Usage" href="usage.html"/>
-      <item name="FAQ" href="faq.html"/>
-    </menu>
-    <menu name="Examples">
-   	  <item name="Preparing dependencies for Maven 2.0.6 / 2.1" href="examples/preparing-dependencies.html"/>
-      <item name="Copying specific artifacts" href="examples/copying-artifacts.html" />
-      <item name="Copying project dependencies" href="examples/copying-project-dependencies.html" />
-      <item name="Unpacking specific artifacts" href="examples/unpacking-artifacts.html" />
-      <item name="Unpacking the project dependencies" href="examples/unpacking-project-dependencies.html" />
-      <item name="Using project dependencies' sources" href="examples/using-dependencies-sources.html" />
-   	  <item name="Failing the build on dependency analysis warnings" href="examples/failing-the-build-on-dependency-analysis-warnings.html"/>
-   	  <item name="Filtering the dependency tree" href="examples/filtering-the-dependency-tree.html"/>
-   	  <item name="Resolving conflicts using the dependency tree" href="examples/resolving-conflicts-using-the-dependency-tree.html"/>
-    </menu>
-    <menu name="Resources">
-      <item name="Dependency Mechanism" href="http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html" />
-    </menu>
-  </body>
 </project>

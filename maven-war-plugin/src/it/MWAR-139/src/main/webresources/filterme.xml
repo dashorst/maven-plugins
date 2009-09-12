@@ -1,0 +1,5 @@
+<foo>
+  <text>${foo.url}</text>
+  <text>hallo @@ hallo</text>
+  <text2>start-${}-end</text2>
+</foo>
