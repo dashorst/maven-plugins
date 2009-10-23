@@ -1,4 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
+
 <!--
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
@@ -17,245 +18,243 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache.maven</groupId>
-    <artifactId>maven-parent</artifactId>
-    <version>13</version>
-    <relativePath>../pom/maven/pom.xml</relativePath>
+    <artifactId>maven-plugins</artifactId>
+    <groupId>org.apache.maven.plugins</groupId>
+    <version>14</version>
   </parent>
 
-  <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-plugins</artifactId>
-  <version>14</version>
-  <packaging>pom</packaging>
+  <artifactId>maven-invoker-plugin</artifactId>
+  <version>1.5</version>
+  <packaging>maven-plugin</packaging>
 
-  <name>Maven Plugins</name>
-  <description>Maven Plugins</description>
-  <url>http://maven.apache.org/plugins/</url>
+  <name>Maven Invoker Plugin</name>
+  <description>
+    The Maven Invoker Plugin is used to run a set of Maven projects. The plugin can determine whether each project
+    execution is successful, and optionally can verify the output generated from a given project execution.
+  </description>
 
-  <mailingLists>
-    <!-- duplication from components - temporary until the site layout is clearer -->
-    <mailingList>
-      <name>Maven User List</name>
-      <subscribe>users-subscribe@maven.apache.org</subscribe>
-      <unsubscribe>users-unsubscribe@maven.apache.org</unsubscribe>
-      <post>users@maven.apache.org</post>
-      <archive>http://mail-archives.apache.org/mod_mbox/maven-users</archive>
-      <otherArchives>
-        <otherArchive>http://www.mail-archive.com/users@maven.apache.org/</otherArchive>
-        <otherArchive>http://www.nabble.com/Maven---Users-f178.html</otherArchive>
-        <otherArchive>http://maven.users.markmail.org/</otherArchive>
-      </otherArchives>
-    </mailingList>
-    <mailingList>
-      <name>Maven Developer List</name>
-      <subscribe>dev-subscribe@maven.apache.org</subscribe>
-      <unsubscribe>dev-unsubscribe@maven.apache.org</unsubscribe>
-      <post>dev@maven.apache.org</post>
-      <archive>http://mail-archives.apache.org/mod_mbox/maven-dev</archive>
-      <otherArchives>
-        <otherArchive>http://www.mail-archive.com/dev@maven.apache.org/</otherArchive>
-        <otherArchive>http://www.nabble.com/Maven-Developers-f179.html</otherArchive>
-        <otherArchive>http://maven.dev.markmail.org/</otherArchive>
-      </otherArchives>
-    </mailingList>
-    <mailingList>
-      <name>Maven Issues List</name>
-      <subscribe>issues-subscribe@maven.apache.org</subscribe>
-      <unsubscribe>issues-unsubscribe@maven.apache.org</unsubscribe>
-      <archive>http://mail-archives.apache.org/mod_mbox/maven-issues/</archive>
-      <otherArchives>
-        <otherArchive>http://www.mail-archive.com/issues@maven.apache.org</otherArchive>
-        <otherArchive>http://www.nabble.com/Maven---Issues-f15573.html</otherArchive>
-        <otherArchive>http://maven.issues.markmail.org/</otherArchive>
-      </otherArchives>
-    </mailingList>
-    <mailingList>
-      <name>Maven Commits List</name>
-      <subscribe>commits-subscribe@maven.apache.org</subscribe>
-      <unsubscribe>commits-unsubscribe@maven.apache.org</unsubscribe>
-      <archive>http://mail-archives.apache.org/mod_mbox/maven-dev</archive>
-      <otherArchives>
-        <otherArchive>http://www.mail-archive.com/commits@maven.apache.org</otherArchive>
-        <otherArchive>http://www.nabble.com/Maven---Commits-f15575.html</otherArchive>
-        <otherArchive>http://maven.commits.markmail.org/</otherArchive>
-      </otherArchives>
-    </mailingList>
-    <!-- duplication from parent pom - temporary until they inherit properly -->
-    <mailingList>
-      <name>Maven Announcements List</name>
-      <post>announce@maven.apache.org</post>
-      <subscribe>announce-subscribe@maven.apache.org</subscribe>
-      <unsubscribe>announce-unsubscribe@maven.apache.org</unsubscribe>
-      <archive>http://mail-archives.apache.org/mod_mbox/maven-announce/</archive>
-      <otherArchives>
-        <otherArchive>http://www.mail-archive.com/announce@maven.apache.org</otherArchive>
-        <otherArchive>http://www.nabble.com/Maven-Announcements-f15617.html</otherArchive>
-        <otherArchive>http://maven.announce.markmail.org/</otherArchive>
-      </otherArchives>
-    </mailingList>
-    <mailingList>
-      <name>Maven Notifications List</name>
-      <subscribe>notifications-subscribe@maven.apache.org</subscribe>
-      <unsubscribe>notifications-unsubscribe@maven.apache.org</unsubscribe>
-      <archive>http://mail-archives.apache.org/mod_mbox/maven-notifications/</archive>
-      <otherArchives>
-        <otherArchive>http://www.mail-archive.com/notifications@maven.apache.org</otherArchive>
-        <otherArchive>http://www.nabble.com/Maven---Notifications-f15574.html</otherArchive>
-        <otherArchive>http://maven.notifications.markmail.org/</otherArchive>
-      </otherArchives>
-    </mailingList>
-  </mailingLists>
-
-  <modules>
-    <module>maven-ant-plugin</module>
-    <module>maven-antrun-plugin</module>
-
-    <!-- HACK: Deliberately put before other plugins that employ maven-antrun-plugin to workaround MNG-1323 -->
-    <module>maven-eclipse-plugin</module>
-
-    <!-- Excluded due to ongoing failures <module>maven-assembly-plugin</module> -->
-    <module>maven-changelog-plugin</module>
-    <module>maven-changes-plugin</module>
-    <module>maven-checkstyle-plugin</module>
-    <module>maven-clean-plugin</module>
-    <module>maven-compiler-plugin</module>
-    <module>maven-dependency-plugin</module>
-    <module>maven-deploy-plugin</module>
-    <module>maven-doap-plugin</module>
-    <module>maven-docck-plugin</module>
-    <module>maven-ear-plugin</module>
-    <module>maven-ejb-plugin</module>
-    <module>maven-gpg-plugin</module>
-    <module>maven-help-plugin</module>
-    <module>maven-idea-plugin</module>
-    <module>maven-install-plugin</module>
-    <module>maven-invoker-plugin</module>
-    <module>maven-jar-plugin</module>
-    <module>maven-jarsigner-plugin</module>
-    <module>maven-javadoc-plugin</module>
-    <module>maven-linkcheck-plugin</module>
-    <module>maven-one-plugin</module>
-    <module>maven-patch-plugin</module>
-    <module>maven-pdf-plugin</module>
-    <module>maven-pmd-plugin</module>
-    <!--Excluded as a workaround for MNG-3814
-    <module>maven-project-info-reports-plugin</module>-->
-    <module>maven-rar-plugin</module>
-    <module>maven-reactor-plugin</module>
-    <!--Excluded as a workaround for MNG-3814
-    <module>maven-remote-resources-plugin</module-->
-    <module>maven-repository-plugin</module>
-    <module>maven-resources-plugin</module>
-    <module>maven-shade-plugin</module>
-    <module>maven-site-plugin</module>
-    <module>maven-source-plugin</module>
-    <module>maven-stage-plugin</module>
-    <module>maven-toolchains-plugin</module>
-    <module>maven-verifier-plugin</module>
-    <module>maven-war-plugin</module>
-  </modules>
+  <prerequisites>
+    <maven>2.0.6</maven>
+  </prerequisites>
 
   <scm>
-    <connection>scm:svn:http://svn.apache.org/repos/asf/maven/plugins/tags/maven-plugins-14</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/maven/plugins/tags/maven-plugins-14</developerConnection>
-    <url>http://svn.apache.org/viewvc/maven/plugins/tags/maven-plugins-14</url>
+    <connection>scm:svn:http://svn.apache.org/repos/asf/maven/plugins/tags/maven-invoker-plugin-1.5</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/maven/plugins/tags/maven-invoker-plugin-1.5</developerConnection>
+    <url>http://svn.apache.org/viewvc/maven/plugins/tags/maven-invoker-plugin-1.5</url>
   </scm>
-  <distributionManagement>
-    <site>
-      <id>apache.website</id>
-      <url>scp://people.apache.org/www/maven.apache.org/plugins/</url>
-    </site>
-  </distributionManagement>
+  <issueManagement>
+    <system>jira</system>
+    <url>http://jira.codehaus.org/browse/MINVOKER</url>
+  </issueManagement>
+
+  <properties>
+    <mavenVersion>2.0.6</mavenVersion>
+    <doxiaVersion>1.0-alpha-11</doxiaVersion>
+    <doxia-sitetoolsVersion>1.0-alpha-11</doxia-sitetoolsVersion>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.maven.shared</groupId>
+      <artifactId>maven-invoker</artifactId>
+      <version>2.0.11</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-project</artifactId>
+      <version>${mavenVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-model</artifactId>
+      <version>${mavenVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <version>${mavenVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-artifact</artifactId>
+      <version>${mavenVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-settings</artifactId>
+      <version>${mavenVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.reporting</groupId>
+      <artifactId>maven-reporting-api</artifactId>
+      <version>${mavenVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.reporting</groupId>
+      <artifactId>maven-reporting-impl</artifactId>
+      <version>2.0.4.1</version>
+    </dependency>
+
+    <!-- Doxia -->
+    <dependency>
+      <groupId>org.apache.maven.doxia</groupId>
+      <artifactId>doxia-sink-api</artifactId>
+      <version>${doxiaVersion}</version>
+    </dependency>
+
+    <!-- Doxia-sitetools -->
+    <dependency>
+      <groupId>org.apache.maven.doxia</groupId>
+      <artifactId>doxia-site-renderer</artifactId>
+      <version>${doxia-sitetoolsVersion}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.codehaus.plexus</groupId>
+          <artifactId>plexus-container-default</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.codehaus.plexus</groupId>
+          <artifactId>plexus-component-api</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.beanshell</groupId>
+      <artifactId>bsh</artifactId>
+      <version>2.0b4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.groovy</groupId>
+      <artifactId>groovy</artifactId>
+      <version>1.5.6</version>
+      <exclusions>
+        <exclusion>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>1.7.1</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.ant</groupId>
+          <artifactId>ant-launcher</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-utils</artifactId>
+      <version>1.5.6</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-interpolation</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-i18n</artifactId>
+      <version>1.0-beta-7</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.codehaus.plexus</groupId>
+          <artifactId>plexus-container-default</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.codehaus.plexus</groupId>
+          <artifactId>plexus-component-api</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugin-testing</groupId>
+      <artifactId>maven-plugin-testing-harness</artifactId>
+      <version>1.2</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
   <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <artifactId>maven-release-plugin</artifactId>
-          <configuration>
-            <tagBase>https://svn.apache.org/repos/asf/maven/plugins/tags</tagBase>
-          </configuration>
-        </plugin>
-        <plugin>
-          <artifactId>maven-site-plugin</artifactId>
-          <configuration>
-            <stagingSiteURL>scp://people.apache.org/www/maven.apache.org/plugins/${project.artifactId}-${project.version}</stagingSiteURL>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
     <plugins>
       <plugin>
-        <artifactId>maven-enforcer-plugin</artifactId>
+        <groupId>org.codehaus.modello</groupId>
+        <artifactId>modello-maven-plugin</artifactId>
         <executions>
           <execution>
             <goals>
-              <goal>enforce</goal>
-            </goals>
-            <id>ensure-no-container-api</id>
-            <configuration>
-              <rules>
-                <bannedDependencies>
-                  <excludes>
-                    <exclude>org.codehaus.plexus:plexus-component-api</exclude>
-                  </excludes>
-                  <message>The new containers are not supported. You probably added a dependency that is missing the exclusions.</message>
-                </bannedDependencies>
-              </rules>
-              <fail>true</fail>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-plugin-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>generated-helpmojo</id>
-            <goals>
-              <goal>helpmojo</goal>
+              <!-- Generate the xpp3 reader code -->
+              <goal>xpp3-reader</goal>
+              <!-- Generate the xpp3 writer code -->
+              <goal>xpp3-writer</goal>
+              <!-- Generate the Java sources for the model itself -->
+              <goal>java</goal>
             </goals>
           </execution>
         </executions>
+        <configuration>
+          <models>
+            <model>src/main/mdo/invocation.mdo</model>
+          </models>
+          <version>1.0.0</version>
+        </configuration>
       </plugin>
     </plugins>
   </build>
 
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-plugin-plugin</artifactId>
-        <version>2.5</version>
-      </plugin>
-    </plugins>
-  </reporting>
-
   <profiles>
     <profile>
-      <id>quality-checks</id>
-      <activation>
-        <property>
-          <name>quality-checks</name>
-          <value>true</value>
-        </property>
-      </activation>
+      <id>run-its</id>
+      <properties>
+        <sitePluginVersion>2.0.1</sitePluginVersion>
+      </properties>
       <build>
         <plugins>
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-docck-plugin</artifactId>
+            <artifactId>maven-invoker-plugin</artifactId>
+            <version>1.4</version>
+            <configuration>
+              <debug>true</debug>
+              <projectsDirectory>src/it</projectsDirectory>
+              <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+              <pomIncludes>
+                <pomInclude>*/pom.xml</pomInclude>
+              </pomIncludes>
+              <preBuildHookScript>setup</preBuildHookScript>
+              <postBuildHookScript>verify</postBuildHookScript>
+              <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
+              <settingsFile>src/it/settings.xml</settingsFile>
+              <goals>
+                <goal>clean</goal>
+                <goal>initialize</goal>
+              </goals>
+              <properties>
+                <!-- TODO: Workaround for MINVOKER-50, remove once fixed -->
+                <invoker.version>${project.version}</invoker.version>
+              </properties>
+            </configuration>
             <executions>
               <execution>
-                <id>docck-check</id>
-                <phase>verify</phase>
+                <id>integration-test</id>
                 <goals>
-                  <goal>check</goal>
+                  <goal>install</goal>
+                  <goal>run</goal>
                 </goals>
               </execution>
             </executions>
@@ -264,56 +263,16 @@ under the License.
       </build>
     </profile>
     <profile>
-      <id>reporting</id>
-      <reporting>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>2.5</version>
-            <configuration>
-              <tagletArtifacts>
-                <tagletArtifact>
-                  <groupId>org.apache.maven.plugin-tools</groupId>
-                  <artifactId>maven-plugin-tools-javadoc</artifactId>
-                  <version>2.5</version>
-                </tagletArtifact>
-                <tagletArtifact>
-                  <groupId>org.codehaus.plexus</groupId>
-                  <artifactId>plexus-javadoc</artifactId>
-                  <version>1.0</version>
-                </tagletArtifact>
-              </tagletArtifacts>
-            </configuration>
-          </plugin>
-        </plugins>
-      </reporting>
-    </profile>
-    <profile>
-      <id>parent-release</id>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-release-plugin</artifactId>
-            <configuration>
-              <arguments>-N -Papache-release</arguments>
-            </configuration>
-          </plugin>
-          <plugin>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>source-release-assembly</id>
-                <configuration>
-                  <descriptorRefs>
-                    <descriptorRef>src</descriptorRef>
-                  </descriptorRefs>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
+      <id>maven-3</id>
+      <activation>
+        <file>
+          <!-- This employs that the basedir expression is only recognized by Maven 3.x (see MNG-2363) -->
+          <exists>${basedir}</exists>
+        </file>
+      </activation>
+      <properties>
+        <sitePluginVersion>3.0-beta-1-SNAPSHOT</sitePluginVersion>
+      </properties>
     </profile>
   </profiles>
 </project>
