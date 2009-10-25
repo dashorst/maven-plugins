@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<project xmlns="http://maven.apache.org/DECORATION/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd"
+  name="Maven Changes plugin">
+  <body>
+    <menu name="Overview">
+      <item name="Introduction" href="index.html"/>
+      <item name="Goals" href="plugin-info.html"/>
+      <item name="Usage" href="usage.html"/>
+      <item name="FAQ" href="faq.html"/>
+      <item name="Using the XML Schema" href="using-changes-xsd.html"/>
+    </menu>
+    <menu name="Reference">
+      <item name="changes.xml" href="changes.html"/>
+      <item name="changes.xsd" href="xsd/changes-1.0.0.xsd"/>
+    </menu>
+    <menu name="Samples">
+      <item name="Sample Changes Report" href="changes-report.html"/>
+      <item name="Live JIRA Report" href="jira-report.html"/>
+    </menu>
+    <menu name="Examples">
+      <item name="Alternate Location for the changes.xml File" href="examples/alternate-changes-xml-location.html"/>
+      <item name="Configuring the Trac Report" href="examples/configuring-trac-report.html"/>
+      <item name="Customizing the JIRA Report" href="examples/customizing-jira-report.html"/>
+      <item name="SMTP Authentication" href="examples/smtp-authentication.html"/>
+      <item name="Specifying the Mail Sender" href="examples/specifying-mail-sender.html"/>
+      <item name="Using a Custom Announcement Template" href="examples/using-a-custom-announcement-template.html"/>
+      <item name="Validate Your changes.xml File" href="examples/changes-file-validation.html"/>
+    </menu>
+  </body>
+</project>

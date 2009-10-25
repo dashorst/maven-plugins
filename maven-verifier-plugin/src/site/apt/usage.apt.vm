@@ -1,0 +1,49 @@
+ ------
+ Usage
+ ------
+ Denis Cabasson
+ ------
+ 20 july 2006
+ ------
+
+Usage
+
+  To verify file system resources during your build, add the Verifier plugin in
+  your <<<pom.xml>>> under the <<<build>>> section. You will also need to
+  create a {{{verifications.html}<<<verifications.xml>>>}} file that contains
+  the verification rules. Add the path to that file to the
+  <<<verificationFile>>> configuration element.
+
++--------
+<project>
+  [...]
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-verifier-plugin</artifactId>
+        <version>${project.version}</version>
+        <configuration>
+          <verificationFile>src/test/verifier/verifications-test.xml</verificationFile>
+        </configuration>
+        <executions>
+          <execution>
+            <id>main</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+[...]
++---------
+
+  The Verifier plugin will fail your build if the verification rules found in
+  the <<<verificationFile>>> fails. If you do not want the Verifier plugin to
+  fail your build you can set the configuration element <<<\<failOnError\>>>>
+  to <<<false>>>.
+
+  For a sample verifications file, see {{{examples/sample-verifications.html}Sample Verifications}}.

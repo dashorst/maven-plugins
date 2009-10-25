@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+
+boolean result = true;
+
+FileWriter writer = null;
+
+try
+{
+    File file = new File( basedir, "target/fileItem-fileMode-1.0-SNAPSHOT-src.dir/App.java" );
+    writer = new FileWriter( file );
+    writer.write( "This is a test." );
+
+    if ( System.getProperty( "os.name" ).toLowerCase( Locale.ENGLISH ).indexOf( "windows" ) >= 0 )
+    {
+        System.out.println( "Detected Windows - skipping" );
+        return true;
+    }
+
+    System.out.println( "File: " + file + " should not be writable." );
+
+    result = false;
+}
+catch( IOException e )
+{
+    result = true;
+}
+
+return result;

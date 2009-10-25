@@ -1,0 +1,8 @@
+Assembly Plugin Required Docs
+
+* Component Descriptors:
+      o include in usage.html:
+            + how are they used?
+            + what can they specify?
+      o include examples of usage
+
