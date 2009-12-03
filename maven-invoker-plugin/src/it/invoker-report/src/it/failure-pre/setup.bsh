@@ -1,2 +1,0 @@
-throw new IllegalStateException( "The pre-build script failed as expected." );
-

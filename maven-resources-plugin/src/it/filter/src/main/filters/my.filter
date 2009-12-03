@@ -1,6 +1,0 @@
-
-filter.token.project.version=${project.version}
-filter.token.projectProperty=${projectProperty}
-filter.token.profileProperty=${profileProperty}
-execProps=fromFilter
-value=foo
