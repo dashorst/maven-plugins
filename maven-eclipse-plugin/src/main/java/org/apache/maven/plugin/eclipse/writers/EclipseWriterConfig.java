@@ -76,6 +76,11 @@ public class EclipseWriterConfig
      * Source directories.
      */
     private EclipseSourceDir[] sourceDirs;
+    
+    /**
+     * Path where the native libraries are stored.
+     */
+    private String nativeLibrariesPath;
 
     /**
      * Local maven repo.
@@ -582,6 +587,26 @@ public class EclipseWriterConfig
     public void setWtpVersion( float wtpVersion )
     {
         this.wtpVersion = wtpVersion;
+    }
+    
+    /**
+     * Setter for <code>nativeLibrariesPath</code>.
+     * 
+     * @param nativeLibrariesPath The nativeLibrariesPath to set.
+     */
+    public void setNativeLibrariesPath( String nativeLibrariesPath )
+    {
+        this.nativeLibrariesPath = nativeLibrariesPath;
+    }
+    
+    /**
+     * Getter for <code>nativeLibrariesPath</code>.
+     * 
+     * @return Returns the nativeLibrariesPath.
+     */
+    public String getNativeLibrariesPath()
+    {
+        return nativeLibrariesPath;
     }
 
     /**

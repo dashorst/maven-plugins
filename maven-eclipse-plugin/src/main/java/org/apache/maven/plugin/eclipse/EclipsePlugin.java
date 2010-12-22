@@ -306,6 +306,13 @@ public class EclipsePlugin
      * @required
      */
     private File buildOutputDirectory;
+    
+    /**
+     * The path where your native libraries are stored.
+     * 
+     * @parameter expression="${nativeLibrariesPath}"
+     */
+    private String nativeLibrariesPath;
 
     /**
      * The version of WTP for which configuration files will be generated. The default value is "none" (don't generate
@@ -702,6 +709,26 @@ public class EclipsePlugin
     public final void setUseProjectReferences( boolean useProjectReferences )
     {
         this.useProjectReferences = useProjectReferences;
+    }
+    
+    /**
+     * Getter for <code>nativeLibrariesPath</code>.
+     * 
+     * @return Returns the nativeLibrariesPath.
+     */
+    public String getNativeLibrariesPath()
+    {
+        return nativeLibrariesPath;
+    }
+    
+    /**
+     * Setter for <code>nativeLibrariesPath</code>.
+     * 
+     * @param nativeLibrariesPath The nativeLibrariesPath to set.
+     */
+    public void setNativeLibrariesPath( String nativeLibrariesPath )
+    {
+        this.nativeLibrariesPath = nativeLibrariesPath;
     }
 
     /**

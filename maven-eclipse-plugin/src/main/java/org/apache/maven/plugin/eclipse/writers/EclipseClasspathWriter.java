@@ -257,6 +257,19 @@ public class EclipseClasspathWriter
             {
                 writer.addAttribute( ATTR_EXCLUDING, excludes );
             }
+            
+            // write path to the native libraries, only for src
+            if ( config.getNativeLibrariesPath() != null && !dir.isResource() && !dir.isTest() )
+            {
+                writer.startElement( "attributes" ); //$NON-NLS-1$
+
+                writer.startElement( "attribute" ); //$NON-NLS-1$
+                writer.addAttribute( "name", "org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" ); //$NON-NLS-1$ //$NON-NLS-2$
+                writer.addAttribute( "value", config.getNativeLibrariesPath() ); //$NON-NLS-1$
+                writer.endElement();
+                
+                writer.endElement();
+            }
 
             writer.endElement();
 
