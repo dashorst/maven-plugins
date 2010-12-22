@@ -469,6 +469,11 @@ public class ReadWorkspaceLocations
                     File rtJarFile = new File( new File( jrePath ), "jre/lib/rt.jar" );
                     if ( !rtJarFile.exists() )
                     {
+                        // OS X specific location for runtime class files
+                        rtJarFile = new File( new File( jrePath ), "bundle/Classes/classes.jar" );
+                    }
+                    if ( !rtJarFile.exists() )
+                    {
                         logger.warn( Messages.getString( "EclipsePlugin.invalidvminworkspace", jrePath ) );
                         continue;
                     }
