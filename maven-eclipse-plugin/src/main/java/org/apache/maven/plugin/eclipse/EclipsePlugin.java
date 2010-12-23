@@ -1339,6 +1339,7 @@ public class EclipsePlugin
         config.setSourceDirs( sourceDirs );
         config.setAddVersionToProjectName( isAddVersionToProjectName() );
         config.setPackaging( packaging );
+        config.setNativeLibrariesPath( nativeLibrariesPath );
         config.setLinkedResources( linkedResources );
         config.setClasspathContainersLast( classpathContainersLast );
 
